@@ -1,43 +1,35 @@
-const Person = require('../models/Person'); 
+const axios = require('axios');
 
 const buscarDados = async (req, res) => {
   try {
-    const { firstName, lastName, gender, birthdayStart, birthdayEnd, email, phone } = req.query;
+    const { firstName, lastName, gender, birthdayStart, birthdayEnd, email, phone, quantidade = 10 } = req.query;
 
-    let query = {};
+    const apiUrl = `https://fakerapi.it/api/v1/persons?_quantity=${quantidade}&_gender=${gender || ''}&_birthday_start=${birthdayStart || ''}&_birthday_end=${birthdayEnd || ''}`;
+
+    const response = await axios.get(apiUrl);
+    let dados = response.data.data;
 
     if (firstName) {
-      query.firstName = new RegExp(firstName, 'i');
+      const regex = new RegExp(firstName, 'i');
+      dados = dados.filter(person => regex.test(person.firstname));
     }
 
     if (lastName) {
-      query.lastName = new RegExp(lastName, 'i');
-    }
-
-    if (gender) {
-      query.gender = gender;
-    }
-
-    if (birthdayStart || birthdayEnd) {
-      query.birthday = {};
-      if (birthdayStart) {
-        query.birthday.$gte = new Date(birthdayStart);
-      }
-      if (birthdayEnd) {
-        query.birthday.$lte = new Date(birthdayEnd);
-      }
+      const regex = new RegExp(lastName, 'i');
+      dados = dados.filter(person => regex.test(person.lastname));
     }
 
     if (email) {
-      query.email = new RegExp(email, 'i');
+      const regex = new RegExp(email, 'i');
+      dados = dados.filter(person => regex.test(person.email));
     }
 
     if (phone) {
-      query.phone = new RegExp(phone, 'i');
+      const regex = new RegExp(phone, 'i');
+      dados = dados.filter(person => regex.test(person.phone));
     }
 
-    const dados = await Person.find(query);
-
+    
     res.json(dados);
   } catch (error) {
     console.error('Erro ao buscar dados:', error);

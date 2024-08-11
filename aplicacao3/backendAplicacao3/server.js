@@ -1,26 +1,21 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const cors = require('cors');
-const connectDB = require('./middlewares/BD'); // Importa a configuração do banco de dados
-const rotasPublicas = require('./routes/rotasPublicas.js');
-const rotasPrivadas = require('./routes/rotasPrivadas.js');
-require('dotenv').config(); // Carregar variáveis do arquivo .env
+const connectDB = require('./middlewares/BD');
+const rotasPublicas = require('./routes/rotasPublicas');
+const rotasPrivadas = require('./routes/rotasPrivadas');
+require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 3000; // Usa a porta do .env ou 3000 por padrão
+const PORT = process.env.PORT || 3000; 
 
-// Conectar ao MongoDB
+app.use(express.json()); 
+app.use(cors()); 
+
 connectDB();
 
-// Middleware
-app.use(bodyParser.json());
-app.use(cors());
+app.use('/api', rotasPublicas); 
+app.use('/logged', rotasPrivadas); 
 
-// Usar as rotas definidas
-app.use('/api', rotasPublicas);
-app.use('/logged', rotasPrivadas);
-
-// Inicia o servidor
 app.listen(PORT, () => {
   console.log(`Servidor está rodando na porta ${PORT}`);
 });

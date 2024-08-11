@@ -1,7 +1,4 @@
-const User = require('../models/User.js'); 
-
-
-const JWT_SECRET = process.env.JWT_SECRET
+const { authenticateUser } = require('../services/authService');
 
 const login = async (req, res) => {
   const { username, password } = req.body;
@@ -11,25 +8,17 @@ const login = async (req, res) => {
   }
 
   try {
-    const user = await User.findOne({ username });
+    const result = await authenticateUser(username, password);
 
-    if (!user) {
-      return res.status(401).json({ error: 'Nome de usuário ou senha inválidos.' });
+    if (result.error) {
+      return res.status(401).json({ error: result.error });
     }
 
-    const isMatch = await bcrypt.compare(password, user.senha);
-
-    if (!isMatch) {
-      return res.status(401).json({ error: 'Nome de usuário ou senha inválidos.' });
-    }
-
-    const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: '1h' });
-
-    res.json({ token });
+    res.json({ token: result.token });
   } catch (error) {
     console.error('Erro ao fazer login:', error);
     res.status(500).json({ error: 'Erro ao processar a solicitação.' });
   }
 };
 
-module.exports = { login};
+module.exports = { login };
