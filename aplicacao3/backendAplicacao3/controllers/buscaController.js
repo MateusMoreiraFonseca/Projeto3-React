@@ -2,7 +2,7 @@ const axios = require('axios');
 
 const buscarDados = async (req, res) => {
   try {
-    const { firstName, lastName, gender, birthdayStart, birthdayEnd, email, phone, quantidade = 10 } = req.query;
+    const { firstName, lastName, gender, birthdayStart, birthdayEnd, email, phone, quantidade } = req.query;
 
     const apiUrl = `https://fakerapi.it/api/v1/persons?_quantity=${quantidade}&_gender=${gender || ''}&_birthday_start=${birthdayStart || ''}&_birthday_end=${birthdayEnd || ''}`;
 

@@ -7,6 +7,7 @@ const login = async (req, res) => {
     return res.status(400).json({ error: 'Nome de usuário e senha são obrigatórios.' });
   }
 
+  console.log(username,password);
   try {
     const result = await authenticateUser(username, password);
 
