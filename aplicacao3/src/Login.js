@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Login.css';
-import { useNavigate } from 'react-router-dom'; // Importa useNavigate
+import { useNavigate } from 'react-router-dom'; 
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -8,7 +8,7 @@ function Login() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [responseMessage, setResponseMessage] = useState('');
-  const navigate = useNavigate(); // Inicializa o hook useNavigate
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,10 +33,11 @@ function Login() {
       if (data.token) {
         localStorage.setItem('token', data.token);
         setResponseMessage('Login bem-sucedido!');
+        const token = data.token;
+        localStorage.setItem('token', token);
         
-        // Adiciona um atraso de 2 segundos antes do redirecionamento
         setTimeout(() => {
-          navigate('/busca'); // Redireciona para a página /busca
+          navigate('/busca');
         }, 2000);
       } else {
         setResponseMessage(data.error || 'Erro desconhecido.');

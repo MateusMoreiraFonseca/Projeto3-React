@@ -5,7 +5,7 @@ export const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
   const [fakeData, setFakeData] = useState([]);
-  const [contadorRetorno, setContadorRetorno] = useState(0); // Inicialize aqui
+  const [contadorRetorno, setContadorRetorno] = useState(0)
 
   return (
     <DataContext.Provider value={{ fakeData, setFakeData, contadorRetorno, setContadorRetorno }}>

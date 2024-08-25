@@ -1,15 +1,20 @@
 const express = require('express');
 const router = express.Router();
 const autenticacao = require('../middlewares/autenticacao');
-const { buscarDados } = require('../controllers/buscaController'); // Ajuste o caminho conforme necessário
+const { salvarDados } = require('../controllers/fakeDataController');
+const { buscarDados, apagarDados} = require('../controllers/dataController');
+// Rota para salvar dados (protegido por autenticação)
+router.post('/salvarDados', autenticacao, salvarDados);
 
-// Busca (protegido por autenticação)
-router.get('/buscarDados', autenticacao, buscarDados);
+// Rota para buscar dados salvos (protegido por autenticação)
+router.get('/buscarDadosSalvos', autenticacao, buscarDados);
+router.delete('/excluirDadosSalvos', autenticacao, apagarDados);
+
+
+// Outras rotas comentadas, se necessário
 // router.post('/persons', createPersonController);
 // router.get('/buscarPersons', autenticacao, buscarPersons);
 // router.get('/persons/:id', getPersonByIdController);
-
-// Inserção (protegido por autenticação)
 // router.post('/inserir', autenticacao, inserirDados);
 
 module.exports = router;
