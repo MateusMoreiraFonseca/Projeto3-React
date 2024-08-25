@@ -1,77 +1,16 @@
-import React, { useState } from 'react';
-import './App.css';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Login from './Login';
+import Busca from './Busca'; // Certifique-se de ter este componente
 
-function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [responseMessage, setResponseMessage] = useState('');
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError(null);
-    setLoading(true);
-
-    try {
-      const response = await fetch('http://localhost:3001/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }), 
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-
-      if (data.token) {
-        localStorage.setItem('token', data.token);
-        setResponseMessage('Login bem-sucedido!');
-        window.location.href = '/'; // Redireciona para a página principal
-      } else {
-        // Se `data.error` existir, exibe a mensagem de erro
-        setResponseMessage(data.error || 'Erro desconhecido.');
-      }
-    } catch (error) {
-      setError('Falha ao fazer login. Verifique suas credenciais e tente novamente.');
-      console.error(error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
+function App() {
   return (
-    <div className="container">
-      <form className="form" onSubmit={handleSubmit}>
-        <h2>Login</h2>
-        {error && <p className="error">{error}</p>}
-        {responseMessage && <p className="response">{responseMessage}</p>}
-        <input
-          className="input"
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <input
-          className="input"
-          type="password"
-          placeholder="Senha"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button className="button" type="submit" disabled={loading}>
-          {loading ? 'Entrando...' : 'Entrar'}
-        </button>
-      </form>
-    </div>
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/busca" element={<Busca />} />
+      {/* Adicione outras rotas aqui */}
+    </Routes>
   );
 }
 
-export default Login;
+export default App;
