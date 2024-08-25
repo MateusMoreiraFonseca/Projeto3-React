@@ -1,5 +1,6 @@
-const User = require('../models/User.js');
+const User = require('../models/User');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt'); 
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -11,12 +12,12 @@ const authenticateUser = async (username, password) => {
       return { error: 'Nome de usuário ou senha inválidos.' };
     }
 
-    // Comparar senha em texto simples
-    if (password !== user.senha) {
+    const isMatch = await bcrypt.compare(password, user.senha);
+
+    if (!isMatch) {
       return { error: 'Nome de usuário ou senha inválidos.' };
     }
 
-    // Gerar o token JWT
     const token = jwt.sign({ userId: user._id, role: user.role }, JWT_SECRET, { expiresIn: '1h' });
 
     return { token };

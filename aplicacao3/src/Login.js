@@ -14,7 +14,7 @@ function Login() {
     e.preventDefault();
     setError(null);
     setLoading(true);
-
+  
     try {
       const response = await fetch('http://localhost:3001/api/login', {
         method: 'POST',
@@ -23,19 +23,24 @@ function Login() {
         },
         body: JSON.stringify({ username, password }), 
       });
-
+  
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        // Trata o erro com base no status HTTP
+        if (response.status === 401) {
+          setError('Credenciais inválidas.');
+        } else if (response.status === 500) {
+          setError('Erro interno do servidor. Tente novamente mais tarde.');
+        } else {
+          setError('Erro desconhecido.');
+        }
+        return;
       }
-
+  
       const data = await response.json();
-
+  
       if (data.token) {
         localStorage.setItem('token', data.token);
         setResponseMessage('Login bem-sucedido!');
-        const token = data.token;
-        localStorage.setItem('token', token);
-        
         setTimeout(() => {
           navigate('/busca');
         }, 2000);
@@ -43,12 +48,12 @@ function Login() {
         setResponseMessage(data.error || 'Erro desconhecido.');
       }
     } catch (error) {
-      setError('Falha ao fazer login. Verifique suas credenciais e tente novamente.');
-      console.error(error.message);
+      setError('Servidor Indisponível. Tente novamente mais tarde.');
     } finally {
       setLoading(false);
     }
   };
+  
 
   return (
     <div className="container">

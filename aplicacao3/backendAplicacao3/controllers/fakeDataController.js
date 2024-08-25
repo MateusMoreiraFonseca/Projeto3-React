@@ -1,7 +1,5 @@
-// controllers/fakeDataController.js
 const fakeDataService = require('../services/fakeDataService');
 
-// Controlador para salvar múltiplos dados
 const salvarDados = async (req, res) => {
   try {
     const dados = req.body;
