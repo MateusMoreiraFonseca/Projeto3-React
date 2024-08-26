@@ -1,7 +1,8 @@
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Login from './Login';
 import Busca from './Busca'; 
+import { Navigate } from 'react-router-dom';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <Route path="/" element={<Navigate to="/login" />} />
       <Route path="/login" element={<Login />} />
       <Route path="/busca" element={<Busca />} />
+      {}
     </Routes>
   );
 }
