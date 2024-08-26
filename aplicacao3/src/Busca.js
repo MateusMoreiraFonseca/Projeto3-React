@@ -100,8 +100,6 @@ function App() {
         handle403Error(setErroRequisicao, navigate);
       }
       if (!response.ok) throw new Error('Falha ao excluir os dados');
-      const result = await response.json();
-
       setFakeData(prevData => prevData.filter(item => !idsParaExcluir.includes(item._id)));
       setSelecionados([]);
       setSucesso('Dados excluídos com sucesso!');
