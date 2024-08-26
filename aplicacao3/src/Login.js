@@ -25,6 +25,7 @@ function Login() {
       });
   
       if (!response.ok) {
+        // Trata o erro com base no status HTTP
         if (response.status === 401) {
           setError('Credenciais inválidas.');
         } else if (response.status === 500) {
