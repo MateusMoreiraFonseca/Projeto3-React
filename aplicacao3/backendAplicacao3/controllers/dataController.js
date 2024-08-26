@@ -1,5 +1,6 @@
 const DataService = require('../services/DataService');
 
+// Função para buscar todos os dados
 const buscarDados = async (req, res) => {
   try {
     const data = await DataService.getAllFakeData();

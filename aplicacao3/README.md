@@ -1,54 +1,70 @@
-# Projeto de Aplicação
+# Getting Started with Create React App
 
-Este projeto é uma aplicação de exemplo utilizando React no frontend e Node.js com Express e MongoDB no backend. A seguir, estão as instruções para iniciar o projeto.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Instruções para Início
+## Available Scripts
 
-1. **Iniciar o frontend**:
-   - Abra um terminal e navegue até o diretório do frontend:
-     ```bash
-     cd aplicacao3
-     ```
-   - Instale as dependências e inicie o servidor:
-     ```bash
-     npm install
-     npm start
-     ```
-   - O frontend estará acessível em [http://localhost:3000](http://localhost:3000).
+In the project directory, you can run:
 
-2. **Iniciar o backend**:
-   - Abra um segundo terminal e navegue até o diretório do backend:
-     ```bash
-     cd aplicacao3/backendAplicacao3
-     ```
-   - Instale as dependências e inicie o servidor:
-     ```bash
-     npm install
-     npm start
-     ```
-   - O backend estará acessível em [http://localhost:3001](http://localhost:3001).
+### `npm start`
 
-## Estrutura do Projeto
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-- **aplicacao3**: Contém o código do frontend em React.
-  - **`src`**: Contém os componentes React e arquivos de configuração.
-  - **`public`**: Contém arquivos estáticos e o `index.html`.
-- **backendAplicacao3**: Contém o código do backend com Node.js, Express e MongoDB.
-  - **`models`**: Contém os modelos Mongoose.
-  - **`routes`**: Contém as rotas do Express.
-  - **`services`**: Contém os serviços de autenticação e outros serviços.
-  - **`controllers`**: Contém os controladores para as rotas.
-  - **`config`**: Contém arquivos de configuração, como variáveis de ambiente.
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-## Funcionalidades
+### `npm test`
 
-- **Login**: Implementa a autenticação de usuários usando JWT e senhas criptografadas.
-- **Gerenciamento de Dados**: Inclui operações básicas de CRUD (criar, ler, atualizar e excluir) para dados de exemplo.
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-## Contribuições
+### `npm run build`
 
-Contribuições são bem-vindas! Por favor, faça um fork do repositório e envie um pull request com suas alterações.
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-## Contato
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-Para qualquer dúvida, entre em contato com [mateus.fonseca1992@gmail.com]
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
